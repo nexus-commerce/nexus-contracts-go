@@ -5,7 +5,6 @@ go 1.25.3
 replace github.com/nexus-commerce/nexus-contracts-go => ./
 
 require (
-	connectrpc.com/connect v1.19.1
 	google.golang.org/grpc v1.76.0
 	google.golang.org/protobuf v1.36.10
 )
