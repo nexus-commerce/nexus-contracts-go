@@ -312,9 +312,9 @@ const file_payment_v1_payment_proto_rawDesc = "" +
 	"\border_id\x18\a \x01(\x03R\aorderId\"\x14\n" +
 	"\x12GetPaymentsRequest\"F\n" +
 	"\x13GetPaymentsResponse\x12/\n" +
-	"\bpayments\x18\x01 \x03(\v2\x13.payment.v1.PaymentR\bpayments2\xf9\x01\n" +
-	"\x0ePaymentService\x12}\n" +
-	"\x0eProcessPayment\x12!.payment.v1.ProcessPaymentRequest\x1a\".payment.v1.ProcessPaymentResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/api/v1/payments/initiate\x12h\n" +
+	"\bpayments\x18\x01 \x03(\v2\x13.payment.v1.PaymentR\bpayments2\xf0\x01\n" +
+	"\x0ePaymentService\x12t\n" +
+	"\x0eProcessPayment\x12!.payment.v1.ProcessPaymentRequest\x1a\".payment.v1.ProcessPaymentResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/api/v1/payments\x12h\n" +
 	"\vGetPayments\x12\x1e.payment.v1.GetPaymentsRequest\x1a\x1f.payment.v1.GetPaymentsResponse\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/api/v1/paymentsB\xaa\x01\n" +
 	"\x0ecom.payment.v1B\fPaymentProtoP\x01ZAgithub.com/nexus-commerce/nexus-contracts-go/payment/v1;paymentv1\xa2\x02\x03PXX\xaa\x02\n" +
 	"Payment.V1\xca\x02\n" +
