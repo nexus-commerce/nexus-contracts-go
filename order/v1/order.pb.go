@@ -128,7 +128,7 @@ func (PaymentMethod) EnumDescriptor() ([]byte, []int) {
 
 type OrderItem struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ProductId     int64                  `protobuf:"varint,1,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
+	Sku           string                 `protobuf:"bytes,1,opt,name=sku,proto3" json:"sku,omitempty"`
 	Quantity      int64                  `protobuf:"varint,2,opt,name=quantity,proto3" json:"quantity,omitempty"`
 	Price         float64                `protobuf:"fixed64,3,opt,name=price,proto3" json:"price,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -165,11 +165,11 @@ func (*OrderItem) Descriptor() ([]byte, []int) {
 	return file_order_v1_order_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *OrderItem) GetProductId() int64 {
+func (x *OrderItem) GetSku() string {
 	if x != nil {
-		return x.ProductId
+		return x.Sku
 	}
-	return 0
+	return ""
 }
 
 func (x *OrderItem) GetQuantity() int64 {
@@ -532,10 +532,9 @@ var File_order_v1_order_proto protoreflect.FileDescriptor
 
 const file_order_v1_order_proto_rawDesc = "" +
 	"\n" +
-	"\x14order/v1/order.proto\x12\border.v1\x1a\x1cgoogle/api/annotations.proto\"\\\n" +
-	"\tOrderItem\x12\x1d\n" +
-	"\n" +
-	"product_id\x18\x01 \x01(\x03R\tproductId\x12\x1a\n" +
+	"\x14order/v1/order.proto\x12\border.v1\x1a\x1cgoogle/api/annotations.proto\"O\n" +
+	"\tOrderItem\x12\x10\n" +
+	"\x03sku\x18\x01 \x01(\tR\x03sku\x12\x1a\n" +
 	"\bquantity\x18\x02 \x01(\x03R\bquantity\x12\x14\n" +
 	"\x05price\x18\x03 \x01(\x01R\x05price\"\xbd\x01\n" +
 	"\x12CreateOrderRequest\x12)\n" +
