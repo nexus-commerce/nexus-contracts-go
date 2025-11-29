@@ -23,14 +23,164 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type Status int32
+
+const (
+	Status_STATUS_UNSPECIFIED Status = 0
+	Status_STATUS_PENDING     Status = 1
+	Status_STATUS_COMPLETED   Status = 2
+	Status_STATUS_FAILED      Status = 3
+	Status_STATUS_REFUNDED    Status = 4
+)
+
+// Enum value maps for Status.
+var (
+	Status_name = map[int32]string{
+		0: "STATUS_UNSPECIFIED",
+		1: "STATUS_PENDING",
+		2: "STATUS_COMPLETED",
+		3: "STATUS_FAILED",
+		4: "STATUS_REFUNDED",
+	}
+	Status_value = map[string]int32{
+		"STATUS_UNSPECIFIED": 0,
+		"STATUS_PENDING":     1,
+		"STATUS_COMPLETED":   2,
+		"STATUS_FAILED":      3,
+		"STATUS_REFUNDED":    4,
+	}
+)
+
+func (x Status) Enum() *Status {
+	p := new(Status)
+	*p = x
+	return p
+}
+
+func (x Status) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Status) Descriptor() protoreflect.EnumDescriptor {
+	return file_payment_v1_payment_proto_enumTypes[0].Descriptor()
+}
+
+func (Status) Type() protoreflect.EnumType {
+	return &file_payment_v1_payment_proto_enumTypes[0]
+}
+
+func (x Status) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Status.Descriptor instead.
+func (Status) EnumDescriptor() ([]byte, []int) {
+	return file_payment_v1_payment_proto_rawDescGZIP(), []int{0}
+}
+
+type PaymentMethod int32
+
+const (
+	PaymentMethod_PAYMENT_METHOD_UNSPECIFIED PaymentMethod = 0
+	PaymentMethod_PAYMENT_METHOD_CARD        PaymentMethod = 1
+	PaymentMethod_PAYMENT_METHOD_ON_DELIVERY PaymentMethod = 2
+)
+
+// Enum value maps for PaymentMethod.
+var (
+	PaymentMethod_name = map[int32]string{
+		0: "PAYMENT_METHOD_UNSPECIFIED",
+		1: "PAYMENT_METHOD_CARD",
+		2: "PAYMENT_METHOD_ON_DELIVERY",
+	}
+	PaymentMethod_value = map[string]int32{
+		"PAYMENT_METHOD_UNSPECIFIED": 0,
+		"PAYMENT_METHOD_CARD":        1,
+		"PAYMENT_METHOD_ON_DELIVERY": 2,
+	}
+)
+
+func (x PaymentMethod) Enum() *PaymentMethod {
+	p := new(PaymentMethod)
+	*p = x
+	return p
+}
+
+func (x PaymentMethod) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (PaymentMethod) Descriptor() protoreflect.EnumDescriptor {
+	return file_payment_v1_payment_proto_enumTypes[1].Descriptor()
+}
+
+func (PaymentMethod) Type() protoreflect.EnumType {
+	return &file_payment_v1_payment_proto_enumTypes[1]
+}
+
+func (x PaymentMethod) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use PaymentMethod.Descriptor instead.
+func (PaymentMethod) EnumDescriptor() ([]byte, []int) {
+	return file_payment_v1_payment_proto_rawDescGZIP(), []int{1}
+}
+
+type Currency int32
+
+const (
+	Currency_CURRENCY_UNSPECIFIED Currency = 0
+	Currency_CURRENCY_USD         Currency = 1
+)
+
+// Enum value maps for Currency.
+var (
+	Currency_name = map[int32]string{
+		0: "CURRENCY_UNSPECIFIED",
+		1: "CURRENCY_USD",
+	}
+	Currency_value = map[string]int32{
+		"CURRENCY_UNSPECIFIED": 0,
+		"CURRENCY_USD":         1,
+	}
+)
+
+func (x Currency) Enum() *Currency {
+	p := new(Currency)
+	*p = x
+	return p
+}
+
+func (x Currency) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Currency) Descriptor() protoreflect.EnumDescriptor {
+	return file_payment_v1_payment_proto_enumTypes[2].Descriptor()
+}
+
+func (Currency) Type() protoreflect.EnumType {
+	return &file_payment_v1_payment_proto_enumTypes[2]
+}
+
+func (x Currency) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Currency.Descriptor instead.
+func (Currency) EnumDescriptor() ([]byte, []int) {
+	return file_payment_v1_payment_proto_rawDescGZIP(), []int{2}
+}
+
 type Payment struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
 	Id                   int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Amount               float32                `protobuf:"fixed32,2,opt,name=amount,proto3" json:"amount,omitempty"`
-	Currency             string                 `protobuf:"bytes,3,opt,name=currency,proto3" json:"currency,omitempty"`
-	Status               string                 `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"`
+	Currency             Currency               `protobuf:"varint,3,opt,name=currency,proto3,enum=payment.v1.Currency" json:"currency,omitempty"`
+	Status               Status                 `protobuf:"varint,4,opt,name=status,proto3,enum=payment.v1.Status" json:"status,omitempty"`
 	GatewayTransactionId *structpb.Value        `protobuf:"bytes,5,opt,name=gateway_transaction_id,json=gatewayTransactionId,proto3" json:"gateway_transaction_id,omitempty"`
-	PaymentMethod        string                 `protobuf:"bytes,6,opt,name=payment_method,json=paymentMethod,proto3" json:"payment_method,omitempty"`
+	PaymentMethod        PaymentMethod          `protobuf:"varint,6,opt,name=payment_method,json=paymentMethod,proto3,enum=payment.v1.PaymentMethod" json:"payment_method,omitempty"`
 	OrderId              int64                  `protobuf:"varint,7,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
@@ -80,18 +230,18 @@ func (x *Payment) GetAmount() float32 {
 	return 0
 }
 
-func (x *Payment) GetCurrency() string {
+func (x *Payment) GetCurrency() Currency {
 	if x != nil {
 		return x.Currency
 	}
-	return ""
+	return Currency_CURRENCY_UNSPECIFIED
 }
 
-func (x *Payment) GetStatus() string {
+func (x *Payment) GetStatus() Status {
 	if x != nil {
 		return x.Status
 	}
-	return ""
+	return Status_STATUS_UNSPECIFIED
 }
 
 func (x *Payment) GetGatewayTransactionId() *structpb.Value {
@@ -101,11 +251,11 @@ func (x *Payment) GetGatewayTransactionId() *structpb.Value {
 	return nil
 }
 
-func (x *Payment) GetPaymentMethod() string {
+func (x *Payment) GetPaymentMethod() PaymentMethod {
 	if x != nil {
 		return x.PaymentMethod
 	}
-	return ""
+	return PaymentMethod_PAYMENT_METHOD_UNSPECIFIED
 }
 
 func (x *Payment) GetOrderId() int64 {
@@ -288,14 +438,14 @@ var File_payment_v1_payment_proto protoreflect.FileDescriptor
 const file_payment_v1_payment_proto_rawDesc = "" +
 	"\n" +
 	"\x18payment/v1/payment.proto\x12\n" +
-	"payment.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto\"\xf5\x01\n" +
+	"payment.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto\"\xba\x02\n" +
 	"\aPayment\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x16\n" +
-	"\x06amount\x18\x02 \x01(\x02R\x06amount\x12\x1a\n" +
-	"\bcurrency\x18\x03 \x01(\tR\bcurrency\x12\x16\n" +
-	"\x06status\x18\x04 \x01(\tR\x06status\x12L\n" +
-	"\x16gateway_transaction_id\x18\x05 \x01(\v2\x16.google.protobuf.ValueR\x14gatewayTransactionId\x12%\n" +
-	"\x0epayment_method\x18\x06 \x01(\tR\rpaymentMethod\x12\x19\n" +
+	"\x06amount\x18\x02 \x01(\x02R\x06amount\x120\n" +
+	"\bcurrency\x18\x03 \x01(\x0e2\x14.payment.v1.CurrencyR\bcurrency\x12*\n" +
+	"\x06status\x18\x04 \x01(\x0e2\x12.payment.v1.StatusR\x06status\x12L\n" +
+	"\x16gateway_transaction_id\x18\x05 \x01(\v2\x16.google.protobuf.ValueR\x14gatewayTransactionId\x12@\n" +
+	"\x0epayment_method\x18\x06 \x01(\x0e2\x19.payment.v1.PaymentMethodR\rpaymentMethod\x12\x19\n" +
 	"\border_id\x18\a \x01(\x03R\aorderId\"\x17\n" +
 	"\x15ProcessPaymentRequest\"l\n" +
 	"\x16ProcessPaymentResponse\x12#\n" +
@@ -303,7 +453,20 @@ const file_payment_v1_payment_proto_rawDesc = "" +
 	"\apayment\x18\x02 \x01(\v2\x13.payment.v1.PaymentR\apayment\"\x14\n" +
 	"\x12GetPaymentsRequest\"F\n" +
 	"\x13GetPaymentsResponse\x12/\n" +
-	"\bpayments\x18\x01 \x03(\v2\x13.payment.v1.PaymentR\bpayments2\xf0\x01\n" +
+	"\bpayments\x18\x01 \x03(\v2\x13.payment.v1.PaymentR\bpayments*r\n" +
+	"\x06Status\x12\x16\n" +
+	"\x12STATUS_UNSPECIFIED\x10\x00\x12\x12\n" +
+	"\x0eSTATUS_PENDING\x10\x01\x12\x14\n" +
+	"\x10STATUS_COMPLETED\x10\x02\x12\x11\n" +
+	"\rSTATUS_FAILED\x10\x03\x12\x13\n" +
+	"\x0fSTATUS_REFUNDED\x10\x04*h\n" +
+	"\rPaymentMethod\x12\x1e\n" +
+	"\x1aPAYMENT_METHOD_UNSPECIFIED\x10\x00\x12\x17\n" +
+	"\x13PAYMENT_METHOD_CARD\x10\x01\x12\x1e\n" +
+	"\x1aPAYMENT_METHOD_ON_DELIVERY\x10\x02*6\n" +
+	"\bCurrency\x12\x18\n" +
+	"\x14CURRENCY_UNSPECIFIED\x10\x00\x12\x10\n" +
+	"\fCURRENCY_USD\x10\x012\xf0\x01\n" +
 	"\x0ePaymentService\x12t\n" +
 	"\x0eProcessPayment\x12!.payment.v1.ProcessPaymentRequest\x1a\".payment.v1.ProcessPaymentResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/api/v1/payments\x12h\n" +
 	"\vGetPayments\x12\x1e.payment.v1.GetPaymentsRequest\x1a\x1f.payment.v1.GetPaymentsResponse\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/api/v1/paymentsB\xaa\x01\n" +
@@ -323,28 +486,35 @@ func file_payment_v1_payment_proto_rawDescGZIP() []byte {
 	return file_payment_v1_payment_proto_rawDescData
 }
 
+var file_payment_v1_payment_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
 var file_payment_v1_payment_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_payment_v1_payment_proto_goTypes = []any{
-	(*Payment)(nil),                // 0: payment.v1.Payment
-	(*ProcessPaymentRequest)(nil),  // 1: payment.v1.ProcessPaymentRequest
-	(*ProcessPaymentResponse)(nil), // 2: payment.v1.ProcessPaymentResponse
-	(*GetPaymentsRequest)(nil),     // 3: payment.v1.GetPaymentsRequest
-	(*GetPaymentsResponse)(nil),    // 4: payment.v1.GetPaymentsResponse
-	(*structpb.Value)(nil),         // 5: google.protobuf.Value
+	(Status)(0),                    // 0: payment.v1.Status
+	(PaymentMethod)(0),             // 1: payment.v1.PaymentMethod
+	(Currency)(0),                  // 2: payment.v1.Currency
+	(*Payment)(nil),                // 3: payment.v1.Payment
+	(*ProcessPaymentRequest)(nil),  // 4: payment.v1.ProcessPaymentRequest
+	(*ProcessPaymentResponse)(nil), // 5: payment.v1.ProcessPaymentResponse
+	(*GetPaymentsRequest)(nil),     // 6: payment.v1.GetPaymentsRequest
+	(*GetPaymentsResponse)(nil),    // 7: payment.v1.GetPaymentsResponse
+	(*structpb.Value)(nil),         // 8: google.protobuf.Value
 }
 var file_payment_v1_payment_proto_depIdxs = []int32{
-	5, // 0: payment.v1.Payment.gateway_transaction_id:type_name -> google.protobuf.Value
-	0, // 1: payment.v1.ProcessPaymentResponse.payment:type_name -> payment.v1.Payment
-	0, // 2: payment.v1.GetPaymentsResponse.payments:type_name -> payment.v1.Payment
-	1, // 3: payment.v1.PaymentService.ProcessPayment:input_type -> payment.v1.ProcessPaymentRequest
-	3, // 4: payment.v1.PaymentService.GetPayments:input_type -> payment.v1.GetPaymentsRequest
-	2, // 5: payment.v1.PaymentService.ProcessPayment:output_type -> payment.v1.ProcessPaymentResponse
-	4, // 6: payment.v1.PaymentService.GetPayments:output_type -> payment.v1.GetPaymentsResponse
-	5, // [5:7] is the sub-list for method output_type
-	3, // [3:5] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	2, // 0: payment.v1.Payment.currency:type_name -> payment.v1.Currency
+	0, // 1: payment.v1.Payment.status:type_name -> payment.v1.Status
+	8, // 2: payment.v1.Payment.gateway_transaction_id:type_name -> google.protobuf.Value
+	1, // 3: payment.v1.Payment.payment_method:type_name -> payment.v1.PaymentMethod
+	3, // 4: payment.v1.ProcessPaymentResponse.payment:type_name -> payment.v1.Payment
+	3, // 5: payment.v1.GetPaymentsResponse.payments:type_name -> payment.v1.Payment
+	4, // 6: payment.v1.PaymentService.ProcessPayment:input_type -> payment.v1.ProcessPaymentRequest
+	6, // 7: payment.v1.PaymentService.GetPayments:input_type -> payment.v1.GetPaymentsRequest
+	5, // 8: payment.v1.PaymentService.ProcessPayment:output_type -> payment.v1.ProcessPaymentResponse
+	7, // 9: payment.v1.PaymentService.GetPayments:output_type -> payment.v1.GetPaymentsResponse
+	8, // [8:10] is the sub-list for method output_type
+	6, // [6:8] is the sub-list for method input_type
+	6, // [6:6] is the sub-list for extension type_name
+	6, // [6:6] is the sub-list for extension extendee
+	0, // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_payment_v1_payment_proto_init() }
@@ -357,13 +527,14 @@ func file_payment_v1_payment_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_payment_v1_payment_proto_rawDesc), len(file_payment_v1_payment_proto_rawDesc)),
-			NumEnums:      0,
+			NumEnums:      3,
 			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_payment_v1_payment_proto_goTypes,
 		DependencyIndexes: file_payment_v1_payment_proto_depIdxs,
+		EnumInfos:         file_payment_v1_payment_proto_enumTypes,
 		MessageInfos:      file_payment_v1_payment_proto_msgTypes,
 	}.Build()
 	File_payment_v1_payment_proto = out.File
