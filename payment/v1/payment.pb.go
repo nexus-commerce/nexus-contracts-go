@@ -32,6 +32,7 @@ type Payment struct {
 	GatewayTransactionId *structpb.Value        `protobuf:"bytes,5,opt,name=gateway_transaction_id,json=gatewayTransactionId,proto3" json:"gateway_transaction_id,omitempty"`
 	PaymentMethod        string                 `protobuf:"bytes,6,opt,name=payment_method,json=paymentMethod,proto3" json:"payment_method,omitempty"`
 	OrderId              int64                  `protobuf:"varint,7,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	CreatedAt            int64                  `protobuf:"varint,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -111,6 +112,13 @@ func (x *Payment) GetPaymentMethod() string {
 func (x *Payment) GetOrderId() int64 {
 	if x != nil {
 		return x.OrderId
+	}
+	return 0
+}
+
+func (x *Payment) GetCreatedAt() int64 {
+	if x != nil {
+		return x.CreatedAt
 	}
 	return 0
 }
@@ -288,7 +296,7 @@ var File_payment_v1_payment_proto protoreflect.FileDescriptor
 const file_payment_v1_payment_proto_rawDesc = "" +
 	"\n" +
 	"\x18payment/v1/payment.proto\x12\n" +
-	"payment.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto\"\xf5\x01\n" +
+	"payment.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1cgoogle/protobuf/struct.proto\"\x94\x02\n" +
 	"\aPayment\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x16\n" +
 	"\x06amount\x18\x02 \x01(\x02R\x06amount\x12\x1a\n" +
@@ -296,7 +304,9 @@ const file_payment_v1_payment_proto_rawDesc = "" +
 	"\x06status\x18\x04 \x01(\tR\x06status\x12L\n" +
 	"\x16gateway_transaction_id\x18\x05 \x01(\v2\x16.google.protobuf.ValueR\x14gatewayTransactionId\x12%\n" +
 	"\x0epayment_method\x18\x06 \x01(\tR\rpaymentMethod\x12\x19\n" +
-	"\border_id\x18\a \x01(\x03R\aorderId\"\x17\n" +
+	"\border_id\x18\a \x01(\x03R\aorderId\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\b \x01(\x03R\tcreatedAt\"\x17\n" +
 	"\x15ProcessPaymentRequest\"l\n" +
 	"\x16ProcessPaymentResponse\x12#\n" +
 	"\rclient_secret\x18\x01 \x01(\tR\fclientSecret\x12-\n" +
