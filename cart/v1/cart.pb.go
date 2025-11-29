@@ -256,6 +256,7 @@ func (x *AddItemRequest) GetQuantity() int32 {
 
 type AddItemResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	Item          *CartItem              `protobuf:"bytes,1,opt,name=item,proto3" json:"item,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -288,6 +289,13 @@ func (x *AddItemResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use AddItemResponse.ProtoReflect.Descriptor instead.
 func (*AddItemResponse) Descriptor() ([]byte, []int) {
 	return file_cart_v1_cart_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *AddItemResponse) GetItem() *CartItem {
+	if x != nil {
+		return x.Item
+	}
+	return nil
 }
 
 type UpdateItemRequest struct {
@@ -344,6 +352,7 @@ func (x *UpdateItemRequest) GetQuantity() int32 {
 
 type UpdateItemResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	Item          *CartItem              `protobuf:"bytes,1,opt,name=item,proto3" json:"item,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -376,6 +385,13 @@ func (x *UpdateItemResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use UpdateItemResponse.ProtoReflect.Descriptor instead.
 func (*UpdateItemResponse) Descriptor() ([]byte, []int) {
 	return file_cart_v1_cart_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *UpdateItemResponse) GetItem() *CartItem {
+	if x != nil {
+		return x.Item
+	}
+	return nil
 }
 
 type RemoveItemRequest struct {
@@ -551,12 +567,14 @@ const file_cart_v1_cart_proto_rawDesc = "" +
 	"totalItems\">\n" +
 	"\x0eAddItemRequest\x12\x10\n" +
 	"\x03sku\x18\x01 \x01(\tR\x03sku\x12\x1a\n" +
-	"\bquantity\x18\x02 \x01(\x05R\bquantity\"\x11\n" +
-	"\x0fAddItemResponse\"A\n" +
+	"\bquantity\x18\x02 \x01(\x05R\bquantity\"8\n" +
+	"\x0fAddItemResponse\x12%\n" +
+	"\x04item\x18\x01 \x01(\v2\x11.cart.v1.CartItemR\x04item\"A\n" +
 	"\x11UpdateItemRequest\x12\x10\n" +
 	"\x03sku\x18\x01 \x01(\tR\x03sku\x12\x1a\n" +
-	"\bquantity\x18\x02 \x01(\x05R\bquantity\"\x14\n" +
-	"\x12UpdateItemResponse\"%\n" +
+	"\bquantity\x18\x02 \x01(\x05R\bquantity\";\n" +
+	"\x12UpdateItemResponse\x12%\n" +
+	"\x04item\x18\x01 \x01(\v2\x11.cart.v1.CartItemR\x04item\"%\n" +
 	"\x11RemoveItemRequest\x12\x10\n" +
 	"\x03sku\x18\x01 \x01(\tR\x03sku\"\x14\n" +
 	"\x12RemoveItemResponse\"\x12\n" +
@@ -600,21 +618,23 @@ var file_cart_v1_cart_proto_goTypes = []any{
 }
 var file_cart_v1_cart_proto_depIdxs = []int32{
 	0,  // 0: cart.v1.GetCartResponse.items:type_name -> cart.v1.CartItem
-	1,  // 1: cart.v1.ShoppingCartService.GetCart:input_type -> cart.v1.GetCartRequest
-	3,  // 2: cart.v1.ShoppingCartService.AddItem:input_type -> cart.v1.AddItemRequest
-	5,  // 3: cart.v1.ShoppingCartService.UpdateItem:input_type -> cart.v1.UpdateItemRequest
-	7,  // 4: cart.v1.ShoppingCartService.RemoveItem:input_type -> cart.v1.RemoveItemRequest
-	9,  // 5: cart.v1.ShoppingCartService.ClearCart:input_type -> cart.v1.ClearCartRequest
-	2,  // 6: cart.v1.ShoppingCartService.GetCart:output_type -> cart.v1.GetCartResponse
-	4,  // 7: cart.v1.ShoppingCartService.AddItem:output_type -> cart.v1.AddItemResponse
-	6,  // 8: cart.v1.ShoppingCartService.UpdateItem:output_type -> cart.v1.UpdateItemResponse
-	8,  // 9: cart.v1.ShoppingCartService.RemoveItem:output_type -> cart.v1.RemoveItemResponse
-	10, // 10: cart.v1.ShoppingCartService.ClearCart:output_type -> cart.v1.ClearCartResponse
-	6,  // [6:11] is the sub-list for method output_type
-	1,  // [1:6] is the sub-list for method input_type
-	1,  // [1:1] is the sub-list for extension type_name
-	1,  // [1:1] is the sub-list for extension extendee
-	0,  // [0:1] is the sub-list for field type_name
+	0,  // 1: cart.v1.AddItemResponse.item:type_name -> cart.v1.CartItem
+	0,  // 2: cart.v1.UpdateItemResponse.item:type_name -> cart.v1.CartItem
+	1,  // 3: cart.v1.ShoppingCartService.GetCart:input_type -> cart.v1.GetCartRequest
+	3,  // 4: cart.v1.ShoppingCartService.AddItem:input_type -> cart.v1.AddItemRequest
+	5,  // 5: cart.v1.ShoppingCartService.UpdateItem:input_type -> cart.v1.UpdateItemRequest
+	7,  // 6: cart.v1.ShoppingCartService.RemoveItem:input_type -> cart.v1.RemoveItemRequest
+	9,  // 7: cart.v1.ShoppingCartService.ClearCart:input_type -> cart.v1.ClearCartRequest
+	2,  // 8: cart.v1.ShoppingCartService.GetCart:output_type -> cart.v1.GetCartResponse
+	4,  // 9: cart.v1.ShoppingCartService.AddItem:output_type -> cart.v1.AddItemResponse
+	6,  // 10: cart.v1.ShoppingCartService.UpdateItem:output_type -> cart.v1.UpdateItemResponse
+	8,  // 11: cart.v1.ShoppingCartService.RemoveItem:output_type -> cart.v1.RemoveItemResponse
+	10, // 12: cart.v1.ShoppingCartService.ClearCart:output_type -> cart.v1.ClearCartResponse
+	8,  // [8:13] is the sub-list for method output_type
+	3,  // [3:8] is the sub-list for method input_type
+	3,  // [3:3] is the sub-list for extension type_name
+	3,  // [3:3] is the sub-list for extension extendee
+	0,  // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_cart_v1_cart_proto_init() }
